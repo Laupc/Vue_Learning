@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" value="Start" @click="start">
+        <input type="button" value="Stop" @click="stop">
+        <h4>{{ msg }}</h4>
+    </div>
+
+    <script>
+        // 在vm实例中调用 data 中的数据或者 methods 中的方法必须通过  this.xxx 实现调用
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                msg: "Hello, My name is Laupc."
+            },
+            methods: {
+                start() {
+                    //获取到头部第一个字符
+                    var start = this.msg.substring(0,1);
+                    //获取到索引1后面的所有字符
+                    var end = this.msg.substring(1);
+                    this.msg = end + start;
+                },
+                stop() {
+                     
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
