@@ -25,14 +25,16 @@
             },
             methods: {
                 start() {
-                    //获取到头部第一个字符
-                    var start = this.msg.substring(0,1);
-                    //获取到索引1后面的所有字符
-                    var end = this.msg.substring(1);
-                    this.msg = end + start;
+                    setInterval(() => {
+                        //获取到头部第一个字符
+                        var start = this.msg.substring(0, 1);
+                        //获取到索引1后面的所有字符
+                        var end = this.msg.substring(1);
+                        this.msg = end + start;
+                    }, 200);
                 },
                 stop() {
-                     
+                    
                 }
             }
         })
