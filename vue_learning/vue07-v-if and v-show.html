@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,28 +9,29 @@
     <script src="../lib/vue.js"></script>
 </head>
 
-<body> 
+<body>
     <div id="app">
-        <input type="button" value="Button" v-on:click="show1"/>
-        <input type="button" value="Button" @click="show2"/>
+        <input type="button" value="Change" @click="clickChange">
+        <!-- v-if会重新删除或创建元素  有较高的性能消耗-->
+        <h3 v-if="flag">这是v-if控制的</h3>
+        <!-- v-show只是切换了 元素的 dispaly：none    有较高的渲染消耗-->
+        <h3 v-show="flag">这是v-show控制的</h3>
     </div>
-    
-    <script src="../lib/vue.js"></script>
+
+
     <script>
-        var vm = new Vue ({
+        var vm = new Vue({
             el: "#app",
             data: {
-                mytitle: "This is my title."
+                flag: true
             },
             methods: {
-                show1(){
-                    alert("This is v-on.");
-                },
-                show2: function(){
-                    alert("show2");
+                clickChange(){
+                    this.flag = !this.flag;
                 }
             }
         })
     </script>
 </body>
+
 </html>
