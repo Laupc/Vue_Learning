@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{ msg | msgFormat1 }}</p>
+        <p>{{ msg | msgFormat2("疯狂") }}</p>
+        <!-- 先将 msg传给  Format1过滤 结果在传给 Format3 -->
+        <p>{{ msg | msgFormat1 | msgFormat3("疯狂") }}</p>
+        <p>{{ msg | msgFormat4 }}</p>
+    </div>
+
+
+    <script>
+        //全局过滤器
+        Vue.filter('msgFormat1', function (msg) {
+            //replace第一个参数可以为正则表达式与字符串
+            return msg.replace(/单纯/g, "邪恶");
+        });
+
+        Vue.filter('msgFormat2', function (msg, arg) {
+            //replace第一个参数可以为正则表达式与字符串
+            return msg.replace(/单纯/g, arg);
+        });
+        Vue.filter('msgFormat3', function (msg, arg) {
+            //replace第一个参数可以为正则表达式与字符串
+            return msg.replace(/邪恶/g, arg);
+        });
+
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                msg: "单纯的少年，单纯的我，这个单纯的世界上谁最单纯",
+            },
+            methods: {
+
+            },
+            // 私有过滤器
+            filters: {
+                msgFormat4: function (msg) {
+                    return msg.replace(/单纯/g, "邪恶");
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
