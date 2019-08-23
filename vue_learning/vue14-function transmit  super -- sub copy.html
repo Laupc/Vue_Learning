@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <sub-com @func="show"></sub-com>
+    </div>
+
+    <template id="subcom">
+        <div>
+            <h1>This is subCom.</h1>
+            <input type="button" value="Button" @click="subFunc">
+        </div>
+    </template>
+
+    <script>
+        Vue.component("subCom", {
+            template: "#subcom",
+            methods: {
+                subFunc() {
+                    // 父组件的 show(arg1,arg2,ar3)
+                    // this.$emit("func",arg1,arg2,arg3);
+
+                    //传入子组件的data
+                    this.$emit("func",this.subData);
+                }
+            },
+            data(){
+                return{
+                    subData: { name: "老大", age: 6}
+                }
+            }
+
+        })
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                msg: "This is superCom data.",
+                superData: "",
+            },
+            methods: {
+                show(arg1) {
+                    // 父组件中接收由子组件传来的data
+                    this.superData = arg1
+                    console.log(this.superData);
+                    console.log("This is superEvent" + arg1);
+                },
+            },
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <a href="" @click.prevent="flag='login'">登录</a>
+        <a href="" @click.prevent="flag='register'">注册</a>
+        <!-- if else 只适用于2个组件的场景 -->
+        <!-- <login v-if="flag"></login>
+        <register v-else="flag"></register> -->
+        <component :is="flag"></component>
+
+    </div>
+
+    <script>
+        Vue.component("login", {
+            template: "<h1>This is Login component.</h1>"
+        });
+        Vue.component("register", {
+            template: "<h1>This is Register component.</h1>"
+        })
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                flag: "login"
+            },
+            methods: {
+
+            },
+        });
+    </script>
+</body>
+
+</html>
